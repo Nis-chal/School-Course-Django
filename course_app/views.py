@@ -20,6 +20,7 @@ def createCourse(request):
 
 def getCourseDetail(request,courseId):
     courseDetail = get_object_or_404(Course, pk=courseId)
+    
     return render(request, 'course_detail.html',{"courseDetails":courseDetail})
 
 

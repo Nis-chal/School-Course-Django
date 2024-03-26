@@ -30,9 +30,12 @@ def getSchoolList (request):
     }
     return render(request, 'school_list.html',context)
 
-def getSchoolDetail(request,schoolId):
-    schoolDetail = get_object_or_404(School, pk=schoolId)
-    return render(request, 'school_detail.html',{"schoolDetails":schoolDetail})
+def getSchoolDetail(request, schoolId):
+    school = get_object_or_404(School, pk=schoolId)
+
+    courses = Course.objects.filter(school=schoolId)
+
+    return render(request, 'school_detail.html', {"schoolDetails": school, "courses": courses})
     
 
 def updateSchool (request,schoolId):

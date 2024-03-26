@@ -8,12 +8,17 @@
       <p class="text-black">Name :</p>
       <p>Head Of School :</p>
       <p>Location :</p>
-      <p>School :</p>
+      <p>Courses :</p>
     </div>
     <div class="">
       <p class="text-black text-truncate">{{schoolDetails.name}}</p>
       <p>{{schoolDetails.head_of_school}}</p>
       <p>{{schoolDetails.location}}</p>
+      <ul>
+        {% for course in courses %}
+        <li>{{ course.name }}</li>
+        {% endfor %}
+      </ul>
     </div>
 
     <div class="position-absolute top-0 end-0 p-2">
