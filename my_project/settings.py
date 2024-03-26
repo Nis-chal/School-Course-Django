@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 TEMPLATE_DIR= os.path.join(BASE_DIR,'templates')
-MEDIA_DIR = os.path.join(BASE_DIR,'media')
+
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # Quick-start development settings - unsuitable for production

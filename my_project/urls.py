@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .view import error_404_view
+from .view import *
 
 
 
 urlpatterns = [
+    path('', home_screen, name='home'),
+  
     path('admin/', admin.site.urls),
     path("school/",include("school_app.urls")),
     path("course/",include("course_app.urls")),
