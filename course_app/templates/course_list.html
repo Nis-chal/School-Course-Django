@@ -1,0 +1,64 @@
+{% extends 'base.html'%} {% block body_block %}
+
+<div class="container flex">
+  <div class="d-flex justify-content-between align-content-center">
+    <h2>Course List</h2>
+
+    <a href="{% url 'course_app:course_create' %}">
+      <i
+        class="fa fa-plus"
+        aria-hidden="true"
+        style="color: green; font-size: 35px"
+      ></i>
+    </a>
+  </div>
+  {% for course in courseList%}
+  <a
+    href="{% url 'course_app:course_detail' courseId=course.id%}"
+    target="_blank"
+    class="text-decoration-none"
+  >
+    <div class="flex-row flex card p-2 my-3 gap-5 position-relative w-full">
+      <div class="">
+        <p class="text-black">Name :</p>
+        <p>Coordinator :</p>
+        <p>credits :</p>
+        <p>School :</p>
+      </div>
+      <div class="">
+        <p class="text-black text-truncate">{{course.name}}</p>
+        <p>{{course.coordinator}}</p>
+        <p>{{course.credits}}</p>
+        <p>{{course.school}}</p>
+      </div>
+      <div class="position-absolute top-0 end-0 p-2">
+        <div class="d-flex gap-1">
+          <i
+            class="fa fa-pencil"
+            aria-hidden="true"
+            style="font-size: 30px"
+          ></i>
+
+          <form
+            action="{% url 'course_app:course_delete' courseId=course.id%}"
+            method="POST"
+          >
+            {% csrf_token %}
+            <button type="submit" class="bg-transparent border-0">
+              <i
+                class="fa fa-trash"
+                aria-hidden="true"
+                style="font-size: 30px; color: #a83258"
+              >
+              </i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

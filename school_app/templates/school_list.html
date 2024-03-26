@@ -1,0 +1,66 @@
+{% extends 'base.html'%} {% block body_block %}
+
+<div class="container">
+  <div class="d-flex justify-content-between align-content-center">
+    <h2>School List</h2>
+    <a href="{% url 'school_app:school_create' %}">
+      <i
+        class="fa fa-plus"
+        aria-hidden="true"
+        style="color: green; font-size: 35px"
+      ></i>
+    </a>
+  </div>
+  {% for school in schools%}
+  <a
+    href="{% url 'school_app:school_detail' schoolId=school.id%}"
+    target="_blank"
+    class="text-decoration-none text-black"
+  >
+    <div class="card p-2 my-3 gap-5 position-relative w-full">
+      <div class="d-flex gap-3">
+        <div class="">
+          <p>Name :</p>
+          <p>Head Of School :</p>
+          <p>Location :</p>
+        </div>
+        <div class="">
+          <p>{{school.name}}</p>
+          <p>{{school.head_of_school}}</p>
+          <p>{{school.location}}</p>
+        </div>
+      </div>
+
+      <div class="position-absolute top-0 end-0 p-2">
+        <div class="d-flex gap-1">
+          <a href="{% url 'school_app:school_update' schoolId=school.id %}">
+            <i
+              class="fa fa-pencil"
+              aria-hidden="true"
+              style="font-size: 30px"
+            ></i>
+          </a>
+
+          <form
+            action="{% url 'school_app:school_delete' schoolId=school.id %}"
+            method="POST"
+          >
+            {% csrf_token %}
+            <button type="submit" class="bg-transparent border-0">
+              <i
+                class="fa fa-trash"
+                aria-hidden="true"
+                style="font-size: 30px; color: #a83258"
+              >
+              </i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

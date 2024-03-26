@@ -1,0 +1,48 @@
+{% extends 'base.html'%} {% block body_block %}
+<div class="container">
+  <h2>School Detail Page</h2>
+  <div
+    class="container flex-row flex card p-2 my-3 gap-5 position-relative w-full"
+  >
+    <div class="">
+      <p class="text-black">Name :</p>
+      <p>Head Of School :</p>
+      <p>Location :</p>
+      <p>School :</p>
+    </div>
+    <div class="">
+      <p class="text-black text-truncate">{{schoolDetails.name}}</p>
+      <p>{{schoolDetails.head_of_school}}</p>
+      <p>{{schoolDetails.location}}</p>
+    </div>
+
+    <div class="position-absolute top-0 end-0 p-2">
+      <div class="d-flex gap-1">
+        <a href="{% url 'school_app:school_update' schoolId=schoolDetails.id %}"
+          ><i
+            class="fa fa-pencil"
+            aria-hidden="true"
+            style="font-size: 30px"
+          ></i
+        ></a>
+
+        <form
+          action="{% url 'school_app:school_delete' schoolId=schoolDetails.id %}"
+          method="POST"
+        >
+          {% csrf_token %}
+          <button type="submit" class="bg-transparent border-0">
+            <i
+              class="fa fa-trash"
+              aria-hidden="true"
+              style="font-size: 30px; color: #a83258"
+            >
+            </i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

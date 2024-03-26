@@ -1,0 +1,32 @@
+{%load static %}
+
+{% extends 'base.html'%} {% load bootstrap %} {% block body_block %}
+
+
+<h2 class="text-center">Add Course</h2>
+<div class="container-fluid d-flex justify-content-center">
+  <div class="container d-flex pt-4 ">
+    <form
+      action=""
+      id="form"
+      method="POST"
+      class="w-100 w-lg-75 "
+   
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %} {{course_form|bootstrap_horizontal}}
+      <button type="submit" class="btn btn-primary mt-2  text-center mx-auto" name="post_submit">
+        Add Course
+      </button>
+    </form>
+
+    <div class="col-4" style={height:"100vh"}>
+      <img
+       class="img-fluid object-fit-cover"
+        src="https://plus.unsplash.com/premium_photo-1663051241451-709fa4de55bc?q=80&w=2950&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      />
+    </div>
+  </div>
+</div>
+
+{% endblock body_block %}

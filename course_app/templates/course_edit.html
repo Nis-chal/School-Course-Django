@@ -1,0 +1,21 @@
+{% extends 'base.html'%} {% load bootstrap %} {% block body_block %}
+
+<div class="container">
+  <h2 class="text-center">Edit Course</h2>
+  <div class="container-fluid d-flex justify-content-center">
+    <form
+      action=""
+      id="form"
+      method="POST"
+      enctype="multipart/form-data"
+      class="w-full container-fluid"
+    >
+      {% csrf_token %} {{course_form|bootstrap_horizontal}}
+      <button type="submit" class="btn btn-primary mt-2" name="post_submit">
+        post
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock body_block %}

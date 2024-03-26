@@ -1,0 +1,49 @@
+{% extends 'base.html'%} {% block body_block %}
+<div class="container">
+  <h2>Course Detail Page</h2>
+  <div
+    class="container flex-row flex card p-2 my-3 gap-5 position-relative w-full"
+  >
+    <div class="">
+      <p class="text-black">Name :</p>
+      <p>Coordinator :</p>
+      <p>credits :</p>
+      <p>School :</p>
+    </div>
+    <div class="">
+      <p class="text-black text-truncate">{{courseDetails.name}}</p>
+      <p>{{courseDetails.coordinator}}</p>
+      <p>{{courseDetails.credits}}</p>
+      <p>{{courseDetails.school}}</p>
+    </div>
+
+    <div class="position-absolute top-0 end-0 p-2">
+      <div class="d-flex gap-1">
+        <a href="{% url 'course_app:course_update' courseId=courseDetails.id %}"
+          ><i
+            class="fa fa-pencil"
+            aria-hidden="true"
+            style="font-size: 30px"
+          ></i
+        ></a>
+
+        <form
+          action="{% url 'course_app:course_delete' courseId=courseDetails.id %}"
+          method="POST"
+        >
+          {% csrf_token %}
+          <button type="submit" class="bg-transparent border-0">
+            <i
+              class="fa fa-trash"
+              aria-hidden="true"
+              style="font-size: 30px; color: #a83258"
+            >
+            </i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

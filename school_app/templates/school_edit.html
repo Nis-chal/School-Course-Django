@@ -1,0 +1,15 @@
+{% extends 'base.html'%} {% load bootstrap %} {% block body_block %}
+<h2 class="text-center">Edit School</h2>
+
+<div class="container-fluid d-flex justify-content-center">
+  <div class="container">
+    <form action="" id="form" method="POST" enctype="multipart/form-data">
+      {% csrf_token %} {{school_form|bootstrap_horizontal}}
+      <button type="submit" class="btn btn-primary mt-2" name="post_submit">
+        post
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock body_block %}
