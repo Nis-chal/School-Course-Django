@@ -16,7 +16,10 @@
       <p>{{schoolDetails.location}}</p>
       <ul>
         {% for course in courses %}
-        <li>{{ course.name }}</li>
+        <a href="/course/detail/{{course.id}}">
+          <li>{{ course.name }}</li>
+        </a>
+
         {% endfor %}
       </ul>
     </div>

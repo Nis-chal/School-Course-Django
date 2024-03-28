@@ -18,8 +18,6 @@ from django.contrib import admin
 from django.urls import path,include
 from .view import *
 
-
-
 urlpatterns = [
     path('', home_screen, name='home'),
   

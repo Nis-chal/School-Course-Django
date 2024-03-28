@@ -2,16 +2,16 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import School
 from course_app.models import Course
 from .forms import SchoolForm 
-from django.db.models import Prefetch
+
 
 # Create your views here.
 
 app_name = 'school_app'
-
 def addSchool (request):
     if request.method == 'POST':
         school_form = SchoolForm(request.POST)
         if school_form.is_valid():
+            
             school = school_form.save(commit= False)
     
       
@@ -21,10 +21,7 @@ def addSchool (request):
         return render(request, 'school_add.html',{'school_form': form})
     
 def getSchoolList (request):
-    schools = School.objects.all().prefetch_related(
-        Prefetch('courses', queryset=Course.objects.all())
-    )
-    
+    schools = School.objects.all()
     context ={
         'schools':schools
     }
@@ -32,12 +29,9 @@ def getSchoolList (request):
 
 def getSchoolDetail(request, schoolId):
     school = get_object_or_404(School, pk=schoolId)
-
     courses = Course.objects.filter(school=schoolId)
-
     return render(request, 'school_detail.html', {"schoolDetails": school, "courses": courses})
     
-
 def updateSchool (request,schoolId):
     school_instance = get_object_or_404(School, pk=schoolId)
     if request.method == 'POST':
@@ -49,8 +43,6 @@ def updateSchool (request,schoolId):
         form = SchoolForm(instance=school_instance)  # Populate the form with the instance data
     return render(request, 'school_edit.html', {'school_form': form})
     
-
-
 def schoolDelete(request,schoolId):
     if request.method == 'POST':
       school = get_object_or_404(School, pk=schoolId)

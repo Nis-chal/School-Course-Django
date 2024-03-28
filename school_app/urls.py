@@ -8,6 +8,5 @@ urlpatterns = [
     path("create", addSchool ,name="school_create"),
     path("update/<int:schoolId>", updateSchool ,name="school_update"),
     path('delete/<int:schoolId>', schoolDelete, name ='school_delete'),
-    
  
 ]
